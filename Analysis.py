@@ -34,6 +34,9 @@ option3 = st.sidebar.selectbox(
 option4 = st.sidebar.checkbox('Max - min mean estimation method')
 if option4:
      mean_method = True
+else:
+    mean_method = False
+
 
 uploaded_files = st.file_uploader("Choose a CSV file(s)", accept_multiple_files=True)
 for uploaded_file in uploaded_files:
