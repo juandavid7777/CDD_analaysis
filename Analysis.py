@@ -22,6 +22,8 @@ for uploaded_file in uploaded_files:
      st.write("filename:", uploaded_file.name)
      st.write(bytes_data)
 
+st.download_button('Download CSV', "text_contents", 'text/csv')
+
 #Creates a date time column to be indexed
 year = 2022
 df_raw["datetime"] = df_raw.apply(lambda x : datetime.datetime(year, x["Date"].month, x["Date"].day, int(x["HH:MM"].split(":")[0])) if int(x["HH:MM"].split(":")[0]) < 24 else datetime.datetime(year, x["Date"].month, x["Date"].day, 0), axis = 1)
