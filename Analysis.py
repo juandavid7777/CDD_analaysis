@@ -31,6 +31,10 @@ option3 = st.sidebar.selectbox(
      'Summary output timeframe',
      ('Hourly', 'Daily', 'Monthly'), index = 2)
 
+option4 = st.sidebar.checkbox('Max - min mean estimation method')
+if option4:
+     mean_method = True
+
 uploaded_files = st.file_uploader("Choose a CSV file(s)", accept_multiple_files=True)
 for uploaded_file in uploaded_files:
 
@@ -52,7 +56,7 @@ for uploaded_file in uploaded_files:
                         base_temp = option1,
                         analysis = analysis,
                         output_summary = option3[0],
-                        max_min_diff = True)
+                        max_min_diff = mean_method)
 
      #Converts and uploads files
      csv_cdd = convert_df(df_cdd)
