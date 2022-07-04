@@ -1,6 +1,13 @@
+import streamlit as str
+
 import pandas as pd
 import numpy as np
 import datetime
+
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+from function import degree_analysis
 
 #Imports file ----------------------------
 path_file = "Dubai_Intl_Airp_Meteonorm.csv"
@@ -26,5 +33,10 @@ df_cdd = degree_analysis(df,
 
 
 #Plots ---------------------------------------
+
+    #Layout
+    #Title
+str.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Cooling and heating degree analysis</b>', unsafe_allow_html=True)
+
 
 df_cdd[["CD"+analysis,"HD"+analysis, "mean"]].plot()
