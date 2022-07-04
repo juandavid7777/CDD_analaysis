@@ -1,4 +1,4 @@
-import streamlit as str
+import streamlit as st
 
 import pandas as pd
 import numpy as np
@@ -9,11 +9,18 @@ from plotly.subplots import make_subplots
 
 from function import degree_analysis
 
-#Imports file ----------------------------
+#Inputs file ----------------------------
 path_file = "Dubai_Intl_Airp_Meteonorm.csv"
 
 # path_file = "ARE_Abu.Dhabi.412170_IWECEPW.csv"
 df_raw = pd.read_csv(path_file, header = 0, parse_dates = ["Date"], dayfirst = True)
+
+
+uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
+for uploaded_file in uploaded_files:
+     bytes_data = uploaded_file.read()
+     st.write("filename:", uploaded_file.name)
+     st.write(bytes_data)
 
 #Creates a date time column to be indexed
 year = 2022
@@ -36,7 +43,7 @@ df_cdd = degree_analysis(df,
 
     #Layout
     #Title
-str.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Cooling and heating degree analysis</b>', unsafe_allow_html=True)
+st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Cooling and heating degree analysis</b>', unsafe_allow_html=True)
 
 
 df_cdd[["CD"+analysis,"HD"+analysis, "mean"]].plot()
