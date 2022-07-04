@@ -19,6 +19,7 @@ def convert_df(df):
 st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Cooling and heating degree analysis</b>', unsafe_allow_html=True)
 
 #2. Inputs options ----------------------------
+st.sidebar.title("Analysis parameters")
 
 option1 = st.sidebar.slider('Base temperature', 0.0, 35.0, step = 0.5, value = 18.0)
 
@@ -63,6 +64,6 @@ for uploaded_file in uploaded_files:
      #Converts and uploads files
      csv_cdd = convert_df(df_cdd)
 
-     st.download_button('Download ' + option3 + 'D'+ analysis + ' - ' + uploaded_file.name, csv_cdd, option3 + ' D'+ analysis + '_' + uploaded_file.name, 'text/csv', key = "download-csv")
+     st.download_button('Download ' + option3 + ' D'+ analysis + ' - ' + uploaded_file.name, csv_cdd, option3 + ' D'+ analysis + '_' + uploaded_file.name, 'text/csv', key = "download-csv")
 
 
