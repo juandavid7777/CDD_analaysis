@@ -7,8 +7,12 @@ import datetime
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
+
+#0. Functions
 from function import degree_analysis
 
+def convert_df(df):
+     return df.to_csv().encode('utf-8')
 
 #1. Layout---------------------------------
 #Title
@@ -48,6 +52,8 @@ for uploaded_file in uploaded_files:
 
      st.write("filename:", uploaded_file.name)
 
-st.download_button('Download CSV', "text_contents", 'text/csv')
+     csv_cdd = convert_df(df_cdd)
+
+     st.download_button('Download CSV', csv_cdd, "file.csv", 'text/csv', key = "download-csv")
 
 
