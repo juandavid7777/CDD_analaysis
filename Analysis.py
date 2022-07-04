@@ -63,6 +63,6 @@ for uploaded_file in uploaded_files:
      #Converts and uploads files
      csv_cdd = convert_df(df_cdd)
 
-     st.download_button('Download D'+ analysis + ' - ' + uploaded_file.name, csv_cdd, 'D'+ analysis + '_' + uploaded_file.name, 'text/csv', key = "download-csv")
+     st.download_button('Download ' + option3 + 'D'+ analysis + ' - ' + uploaded_file.name, csv_cdd, option3 + ' D'+ analysis + '_' + uploaded_file.name, 'text/csv', key = "download-csv")
 
 
