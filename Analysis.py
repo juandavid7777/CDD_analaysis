@@ -21,7 +21,7 @@ st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Cooling and heatin
 
 #2. Inputs options ----------------------------
 
-option1 = st.sidebar.slider('Base temperature', 0, 35, 0.5)
+option1 = st.sidebar.slider('Base temperature', 0.0, 35.0, 0.5)
 
 option2 = st.sidebar.selectbox(
      'Type of analysis?',
