@@ -18,7 +18,6 @@ def convert_df(df):
 #Title
 st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Cooling and heating degree analysis</b>', unsafe_allow_html=True)
 
-
 #2. Inputs options ----------------------------
 
 option1 = st.sidebar.slider('Base temperature', 0.0, 35.0, step = 0.5, value = 18.0)
