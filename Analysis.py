@@ -34,7 +34,7 @@ option3 = st.selectbox(
      'Summary output timeframe',
      ('Hourly', 'Daily', 'Monthly'))
 
-uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
+uploaded_files = st.file_uploader("Choose a CSV file(s)", accept_multiple_files=True)
 for uploaded_file in uploaded_files:
 
 
@@ -57,14 +57,9 @@ for uploaded_file in uploaded_files:
                         output_summary = option3[0],
                         max_min_diff = True)
 
-
-     #5. Plots ---------------------------------------
-     df_cdd[["CD"+analysis,"HD"+analysis, "mean"]].plot()
-
-     st.write("filename:", uploaded_file.name)
-
+     #Converts and uploads files
      csv_cdd = convert_df(df_cdd)
 
-     st.download_button('Download CSV', csv_cdd, "file.csv", 'text/csv', key = "download-csv")
+     st.download_button('Download CSV - ' + uploaded_file.name, csv_cdd, "file.csv", 'text/csv', key = "download-csv")
 
 
