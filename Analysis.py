@@ -16,17 +16,16 @@ st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Cooling and heatin
 
 
 #2. Inputs file ----------------------------
-path_file = "Dubai_Intl_Airp_Meteonorm.csv"
+#path_file = "Dubai_Intl_Airp_Meteonorm.csv"
 
 # path_file = "ARE_Abu.Dhabi.412170_IWECEPW.csv"
-df_raw = pd.read_csv(path_file, header = 0, parse_dates = ["Date"], dayfirst = True)
+#df_raw = pd.read_csv(path_file, header = 0, parse_dates = ["Date"], dayfirst = True)
 
 
 uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
 for uploaded_file in uploaded_files:
-     bytes_data = uploaded_file.read()
+     df_raw = pd.read_csv(uploaded_file, header = 0, parse_dates = ["Date"], dayfirst = True)
      st.write("filename:", uploaded_file.name)
-     st.write(bytes_data)
 
 st.download_button('Download CSV', "text_contents", 'text/csv')
 
