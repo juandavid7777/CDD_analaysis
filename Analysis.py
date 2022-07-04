@@ -19,18 +19,15 @@ def convert_df(df):
 st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Cooling and heating degree analysis</b>', unsafe_allow_html=True)
 
 
-#2. Inputs file ----------------------------
-#path_file = "Dubai_Intl_Airp_Meteonorm.csv"
+#2. Inputs options ----------------------------
 
-# path_file = "ARE_Abu.Dhabi.412170_IWECEPW.csv"
-#df_raw = pd.read_csv(path_file, header = 0, parse_dates = ["Date"], dayfirst = True)
+option1 = st.sidebar.slider('Base temperature', 0, 35, 0.5)
 
-
-option2 = st.selectbox(
+option2 = st.sidebar.selectbox(
      'Type of analysis?',
      ('Hourly', 'Daily', 'Monthly'))
 
-option3 = st.selectbox(
+option3 = st.sidebar.selectbox(
      'Summary output timeframe',
      ('Hourly', 'Daily', 'Monthly'))
 
@@ -52,7 +49,7 @@ for uploaded_file in uploaded_files:
      analysis = option2[0]
 
      df_cdd = degree_analysis(df,
-                        base_temp = 18,
+                        base_temp = option1,
                         analysis = analysis,
                         output_summary = option3[0],
                         max_min_diff = True)
