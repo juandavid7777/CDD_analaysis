@@ -26,17 +26,19 @@ st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Cooling and heatin
 #df_raw = pd.read_csv(path_file, header = 0, parse_dates = ["Date"], dayfirst = True)
 
 
+option2 = st.selectbox(
+     'Type of analysis?',
+     ('Hourly', 'Daily', 'Monthly'))
+
+option3 = st.selectbox(
+     'Summary output timeframe',
+     ('Hourly', 'Daily', 'Monthly'))
+
 uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
 for uploaded_file in uploaded_files:
 
 
      #Inputs for file
-     option2 = st.selectbox(
-     'Type of analysis?',
-     ('Hourly', 'Daily', 'Monthly'))
-
-
-
      df_raw = pd.read_csv(uploaded_file, header = 0, parse_dates = ["Date"], dayfirst = True)
 
      #3. Creates a date time column to be indexed
@@ -52,7 +54,7 @@ for uploaded_file in uploaded_files:
      df_cdd = degree_analysis(df,
                         base_temp = 18,
                         analysis = analysis,
-                        output_summary = "M",
+                        output_summary = option3[0],
                         max_min_diff = True)
 
 
