@@ -25,30 +25,29 @@ st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Cooling and heatin
 uploaded_files = st.file_uploader("Choose a CSV file", accept_multiple_files=True)
 for uploaded_file in uploaded_files:
      df_raw = pd.read_csv(uploaded_file, header = 0, parse_dates = ["Date"], dayfirst = True)
+
+     #3. Creates a date time column to be indexed
+     year = 2022
+     df_raw["datetime"] = df_raw.apply(lambda x : datetime.datetime(year, x["Date"].month, x["Date"].day, int(x["HH:MM"].split(":")[0])) if int(x["HH:MM"].split(":")[0]) < 24 else datetime.datetime(year, x["Date"].month, x["Date"].day, 0), axis = 1)
+
+     #Creates a timeseries dataframe only with temperature
+     df = df_raw[["datetime","Dry Bulb Temperature {C}"]].set_index("datetime")
+
+     #4. Runs analysis function -----------------------
+     analysis = "D"
+
+     df_cdd = degree_analysis(df,
+                        base_temp = 18,
+                        analysis = analysis,
+                        output_summary = "M",
+                        max_min_diff = True)
+
+
+     #5. Plots ---------------------------------------
+     df_cdd[["CD"+analysis,"HD"+analysis, "mean"]].plot()
+
      st.write("filename:", uploaded_file.name)
 
 st.download_button('Download CSV', "text_contents", 'text/csv')
 
-#3. Creates a date time column to be indexed
-year = 2022
-df_raw["datetime"] = df_raw.apply(lambda x : datetime.datetime(year, x["Date"].month, x["Date"].day, int(x["HH:MM"].split(":")[0])) if int(x["HH:MM"].split(":")[0]) < 24 else datetime.datetime(year, x["Date"].month, x["Date"].day, 0), axis = 1)
 
-#Creates a timeseries dataframe only with temperature
-df = df_raw[["datetime","Dry Bulb Temperature {C}"]].set_index("datetime")
-
-#4. Runs analysis function -----------------------
-analysis = "D"
-
-df_cdd = degree_analysis(df,
-                base_temp = 18,
-                analysis = analysis,
-                output_summary = "M",
-                max_min_diff = True)
-
-
-#5. Plots ---------------------------------------
-
-
-
-
-df_cdd[["CD"+analysis,"HD"+analysis, "mean"]].plot()
