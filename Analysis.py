@@ -21,15 +21,15 @@ st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Cooling and heatin
 
 #2. Inputs options ----------------------------
 
-option1 = st.sidebar.slider('Base temperature', 0.0, 35.0, 0.5)
+option1 = st.sidebar.slider('Base temperature', 0.0, 35.0, step = 0.5, value = 18.0)
 
 option2 = st.sidebar.selectbox(
      'Type of analysis?',
-     ('Hourly', 'Daily', 'Monthly'))
+     ('Hourly', 'Daily', 'Monthly'), index =1)
 
 option3 = st.sidebar.selectbox(
      'Summary output timeframe',
-     ('Hourly', 'Daily', 'Monthly'))
+     ('Hourly', 'Daily', 'Monthly'), index = 2)
 
 uploaded_files = st.file_uploader("Choose a CSV file(s)", accept_multiple_files=True)
 for uploaded_file in uploaded_files:
