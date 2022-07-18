@@ -47,7 +47,7 @@ def weather_data_fetch(start, end, lat, lon):
     station = stations.fetch(1)
 
             #ID of the closest station
-    ID = station.index.values.astype(int)[0]
+    ID = station.index.values.astype(str)[0]
     name_station = station["name"][0]
 
     # Get hourly data

@@ -30,7 +30,7 @@ st.sidebar.title("Analysis parameters")
 
 option_0_lat = number = st.sidebar.number_input('Latitude', value = 25.2048 )
 option_0_lon = number = st.sidebar.number_input('Longitude', value = 55.2708)
-option_0_year = number = st.sidebar.number_input('Year', min_value = 2018, max_value=2022)
+option_0_year = number = st.sidebar.number_input('Year', min_value = 2018, max_value=2022, value = 2021)
 
 option1 = st.sidebar.slider('Base temperature (C)', 0.0, 35.0, step = 0.5, value = 18.0)
 
