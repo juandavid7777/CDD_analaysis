@@ -23,8 +23,8 @@ st.write("Degree days are essentially a simplified representation of outside-air
 #2. Inputs options ----------------------------
 st.sidebar.title("Analysis parameters")
 
-option_0_lat = number = st.number_input('Latitude')
-option_0_lat = number = st.number_input('Longitude')
+option_0_lat = number = st.sidebar.number_input('Latitude')
+option_0_lat = number = st.sidebar.number_input('Longitude')
 
 option1 = st.sidebar.slider('Base temperature (C)', 0.0, 35.0, step = 0.5, value = 18.0)
 
