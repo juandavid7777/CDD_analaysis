@@ -57,6 +57,9 @@ end = datetime(year, 12, 31, 23, 59)
 df_raw = weather_data_fetch(start, end, option_0_lat, option_0_lon)[0]
 name_station = weather_data_fetch(start, end, option_0_lat, option_0_lon)[1]
 
+stat_lat = weather_data_fetch(start, end, option_0_lat, option_0_lon)[2]
+stat_lon = weather_data_fetch(start, end, option_0_lat, option_0_lon)[3]
+
 #Creates a timeseries dataframe only with temperature
 df = df_raw[["temp"]]
 
@@ -71,12 +74,11 @@ df_cdd = degree_analysis(df,
 
 #Converts and uploads files
 csv_cdd = convert_df(df_cdd)
-
 st.download_button('Download ' + str(year) + " " + option3 + ' D'+ analysis + ' - ' + name_station, csv_cdd, option3 + ' D'+ analysis + '_' + str(year) + '_' + name_station, 'text/csv', key = "download-csv")
 
-df_map = pd.DataFrame({"lat":[option_0_lat], "lon":[option_0_lon]})
 
-
+#Plots map
+df_map = pd.DataFrame({"lat":[stat_lat], "lon":[stat_lon]})
 st.map(df_map)
 
 
