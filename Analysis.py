@@ -3,6 +3,10 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import datetime
+from datetime import datetime
+
+from meteostat import Hourly
+from meteostat import Stations
 
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
@@ -25,6 +29,7 @@ st.sidebar.title("Analysis parameters")
 
 option_0_lat = number = st.sidebar.number_input('Latitude')
 option_0_lat = number = st.sidebar.number_input('Longitude')
+option_0_year = number = st.sidebar.number_input('Year', min_value = 2018, max_value=2022)
 
 option1 = st.sidebar.slider('Base temperature (C)', 0.0, 35.0, step = 0.5, value = 18.0)
 
@@ -43,32 +48,28 @@ else:
     mean_method = False
 
 
-uploaded_files = st.file_uploader("Choose a CSV file(s)", accept_multiple_files=True)
-for uploaded_file in uploaded_files:
+#Inputs for file
+df_raw = pd.read_csv(uploaded_file, header = 0, parse_dates = ["Date"], dayfirst = True)
 
+#3. Creates a date time column to be indexed
+year = 2022
+df_raw["datetime"] = df_raw.apply(lambda x : datetime.datetime(year, x["Date"].month, x["Date"].day, int(x["HH:MM"].split(":")[0])) if int(x["HH:MM"].split(":")[0]) < 24 else datetime.datetime(year, x["Date"].month, x["Date"].day, 0), axis = 1)
 
-     #Inputs for file
-     df_raw = pd.read_csv(uploaded_file, header = 0, parse_dates = ["Date"], dayfirst = True)
+#Creates a timeseries dataframe only with temperature
+df = df_raw[["datetime","Dry Bulb Temperature {C}"]].set_index("datetime")
 
-     #3. Creates a date time column to be indexed
-     year = 2022
-     df_raw["datetime"] = df_raw.apply(lambda x : datetime.datetime(year, x["Date"].month, x["Date"].day, int(x["HH:MM"].split(":")[0])) if int(x["HH:MM"].split(":")[0]) < 24 else datetime.datetime(year, x["Date"].month, x["Date"].day, 0), axis = 1)
+#4. Runs analysis function -----------------------
+analysis = option2[0]
 
-     #Creates a timeseries dataframe only with temperature
-     df = df_raw[["datetime","Dry Bulb Temperature {C}"]].set_index("datetime")
+df_cdd = degree_analysis(df,
+                    base_temp = option1,
+                    analysis = analysis,
+                    output_summary = option3[0],
+                    max_min_diff = mean_method)
 
-     #4. Runs analysis function -----------------------
-     analysis = option2[0]
+#Converts and uploads files
+csv_cdd = convert_df(df_cdd)
 
-     df_cdd = degree_analysis(df,
-                        base_temp = option1,
-                        analysis = analysis,
-                        output_summary = option3[0],
-                        max_min_diff = mean_method)
-
-     #Converts and uploads files
-     csv_cdd = convert_df(df_cdd)
-
-     st.download_button('Download ' + option3 + ' D'+ analysis + ' - ' + uploaded_file.name, csv_cdd, option3 + ' D'+ analysis + '_' + uploaded_file.name, 'text/csv', key = "download-csv")
+st.download_button('Download ' + option3 + ' D'+ analysis + ' - ' + uploaded_file.name, csv_cdd, option3 + ' D'+ analysis + '_' + uploaded_file.name, 'text/csv', key = "download-csv")
 
 
