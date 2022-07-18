@@ -50,7 +50,7 @@ else:
 
 
 #3. Creates a date time column to be indexed
-year = 2021
+year = option_0_year
 start = datetime(year, 1, 1)
 end = datetime(year, 12, 31, 23, 59)
 
