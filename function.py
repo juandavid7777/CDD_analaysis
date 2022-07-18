@@ -56,4 +56,4 @@ def weather_data_fetch(start, end, lat, lon):
     data = Hourly(ID, start, end)
     data = data.fetch()
 
-    return data, name_station
+    return data, name_station, stat_lat, stat_lon
