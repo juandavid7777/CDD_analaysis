@@ -14,6 +14,7 @@ from plotly.subplots import make_subplots
 
 #0. Functions
 from function import degree_analysis
+from function import weather_data_fetch
 
 def convert_df(df):
      return df.to_csv().encode('utf-8')
