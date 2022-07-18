@@ -74,7 +74,7 @@ df_cdd = degree_analysis(df,
 
 #Converts and uploads files
 csv_cdd = convert_df(df_cdd)
-st.download_button('Download ' + str(year) + " " + option3 + ' D'+ analysis + ' - ' + name_station, csv_cdd, option3 + ' D'+ analysis + '_' + str(year) + '_' + name_station, 'text/csv', key = "download-csv")
+st.download_button('Download ' + str(year) + " " + option3 + ' D'+ analysis + ' - ' + str(name_station), csv_cdd, option3 + ' D'+ analysis + '_' + str(year) + '_' + str(name_station), 'text/csv', key = "download-csv")
 
 
 #Plots map
