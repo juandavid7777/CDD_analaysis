@@ -10,7 +10,7 @@ def degree_analysis(df, base_temp = 18, analysis = "D", output_summary = "M", ma
     
     """
     #Variable names
-    temp_name = df.columns[0]
+    temp_name = "temp"
     CD_name = "CD" + analysis
     HD_name = "HD" + analysis
     
@@ -40,10 +40,7 @@ def weather_data_fetch(start, end, lat, lon):
     from datetime import datetime
     from meteostat import Hourly
 
-    # Set time period
-    start = datetime(2021, 1, 1)
-    end = datetime(2021, 12, 31, 23, 59)
-
+ 
     # Gets closest station ID
     stations = Stations()
     stations = stations.nearby(lat, lon)
@@ -51,9 +48,10 @@ def weather_data_fetch(start, end, lat, lon):
 
             #ID of the closest station
     ID = station.index.values.astype(int)[0]
+    name_station = station.index.values.astype(int)[1]
 
     # Get hourly data
     data = Hourly(ID, start, end)
     data = data.fetch()
 
-    data
+    return data,name_station

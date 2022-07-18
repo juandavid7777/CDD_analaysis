@@ -28,7 +28,7 @@ st.write("Degree days are essentially a simplified representation of outside-air
 st.sidebar.title("Analysis parameters")
 
 option_0_lat = number = st.sidebar.number_input('Latitude')
-option_0_lat = number = st.sidebar.number_input('Longitude')
+option_0_lon = number = st.sidebar.number_input('Longitude')
 option_0_year = number = st.sidebar.number_input('Year', min_value = 2018, max_value=2022)
 
 option1 = st.sidebar.slider('Base temperature (C)', 0.0, 35.0, step = 0.5, value = 18.0)
@@ -48,15 +48,15 @@ else:
     mean_method = False
 
 
-#Inputs for file
-df_raw = pd.read_csv(uploaded_file, header = 0, parse_dates = ["Date"], dayfirst = True)
-
 #3. Creates a date time column to be indexed
 year = 2022
-df_raw["datetime"] = df_raw.apply(lambda x : datetime.datetime(year, x["Date"].month, x["Date"].day, int(x["HH:MM"].split(":")[0])) if int(x["HH:MM"].split(":")[0]) < 24 else datetime.datetime(year, x["Date"].month, x["Date"].day, 0), axis = 1)
+start = datetime(2021, 1, 1)
+end = datetime(2021, 12, 31, 23, 59)
+
+df_raw = weather_data_fetch(start, end, option_0_lat, option_0_lon)
 
 #Creates a timeseries dataframe only with temperature
-df = df_raw[["datetime","Dry Bulb Temperature {C}"]].set_index("datetime")
+df = df_raw[["temp"]]
 
 #4. Runs analysis function -----------------------
 analysis = option2[0]
