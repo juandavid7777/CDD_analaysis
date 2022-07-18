@@ -74,4 +74,9 @@ csv_cdd = convert_df(df_cdd)
 
 st.download_button('Download ' + str(year) + " " + option3 + ' D'+ analysis + ' - ' + name_station, csv_cdd, option3 + ' D'+ analysis + '_' + str(year) + '_' + name_station, 'text/csv', key = "download-csv")
 
+df_map = pd.DataFrame({"lat":[option_0_lat], "lon":[option_0_lon]})
+
+
+st.map(df)
+
 
