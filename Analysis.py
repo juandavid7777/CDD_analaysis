@@ -77,6 +77,6 @@ st.download_button('Download ' + str(year) + " " + option3 + ' D'+ analysis + ' 
 df_map = pd.DataFrame({"lat":[option_0_lat], "lon":[option_0_lon]})
 
 
-st.map(df)
+st.map(df_map)
 
 
