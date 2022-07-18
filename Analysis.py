@@ -50,11 +50,12 @@ else:
 
 
 #3. Creates a date time column to be indexed
-year = 2022
-start = datetime(2021, 1, 1)
-end = datetime(2021, 12, 31, 23, 59)
+year = 2021
+start = datetime(year, 1, 1)
+end = datetime(year, 12, 31, 23, 59)
 
-df_raw = weather_data_fetch(start, end, option_0_lat, option_0_lon)
+df_raw = weather_data_fetch(start, end, option_0_lat, option_0_lon)[0]
+name_station = weather_data_fetch(start, end, option_0_lat, option_0_lon)[1]
 
 #Creates a timeseries dataframe only with temperature
 df = df_raw[["temp"]]
