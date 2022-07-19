@@ -3,7 +3,6 @@ from datetime import datetime
 import pandas as pd
 import numpy as np
 
-import pydeck as pdk
 
 #0. Functions
 from function import weather_data_fetch
