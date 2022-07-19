@@ -11,7 +11,7 @@ def convert_df(df):
 #Title
 st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Weather data access</b>', unsafe_allow_html=True)
 
-st.sidebar.title("Analysis parameters")
+st.sidebar.title("Location information")
 
 option_0_lat = number = st.sidebar.number_input('Latitude', value = 25.2048 )
 option_0_lon = number = st.sidebar.number_input('Longitude', value = 55.2708)
@@ -34,4 +34,6 @@ stat_lon = weather_data_fetch(start, end, option_0_lat, option_0_lon)[3]
 csv_cdd = convert_df(df_raw)
 st.download_button('Download ' + str(year) + " weather data - " + str(name_station), csv_cdd, str(year) + " weather data - " + str(name_station), 'text/csv', key = "download-csv")
 
-
+#Plots map
+df_map = pd.DataFrame({"lat":[stat_lat, option_0_lat], "lon":[stat_lon, option_0_lon]})
+st.map(df_map)

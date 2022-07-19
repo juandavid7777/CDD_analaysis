@@ -78,7 +78,7 @@ st.download_button('Download ' + str(year) + " " + option3 + ' D'+ analysis + ' 
 
 
 #Plots map
-df_map = pd.DataFrame({"lat":[stat_lat], "lon":[stat_lon]})
+df_map = pd.DataFrame({"lat":[stat_lat, option_0_lat], "lon":[stat_lon, option_0_lon]})
 st.map(df_map)
 
 
