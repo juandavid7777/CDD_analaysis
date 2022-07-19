@@ -5,4 +5,4 @@ matplotlib==3.5.0
 plotly <=5.1.0
 datetime ==4.3
 meteostat >= 1.0
-pydeck >= 1.0
+
