@@ -3,6 +3,8 @@ from datetime import datetime
 import pandas as pd
 import numpy as np
 
+from meteostat import Stations
+
 
 #0. Functions
 from function import weather_data_fetch
@@ -26,6 +28,18 @@ start = datetime(year, 1, 1)
 end = datetime(year, 12, 31, 23, 59)
 
 
+# Gets closest station ID
+stations = Stations()
+stations = stations.nearby(option_0_lat, option_0_lon)
+station = stations.fetch(3)
+
+option = st.sidebar.selectbox( 'Select the weather station',
+     station.name)
+
+st.write('You selected:', option)
+
+
+# Gets raw data
 df_raw = weather_data_fetch(start, end, option_0_lat, option_0_lon)[0]
 name_station = weather_data_fetch(start, end, option_0_lat, option_0_lon)[1]
 
