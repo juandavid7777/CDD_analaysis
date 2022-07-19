@@ -52,10 +52,13 @@ csv_cdd = convert_df(df_raw)
 st.download_button('Download ' + str(year) + " weather data - " + str(name_station), csv_cdd, str(year) + " weather data - " + str(name_station), 'text/csv', key = "download-csv")
 
 #Plots map
-list_lat = [option_0_lon]
-list_lon = [option_0_lon]
+list_lat = [option_0_lat]
+list_lat.extend(list(station.latitude))
 
-df_map = pd.DataFrame({"lat": list_lat.extend(list(station.latitude)), "lon": list_lon.extend(list(station.longitude))})
+list_lon = [option_0_lon]
+list_lon.extend(list(station.longitude))
+
+df_map = pd.DataFrame({"lat": list_lat, "lon": list_lon})
 st.map(df_map)
 
 
