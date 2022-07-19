@@ -33,10 +33,10 @@ stations = Stations()
 stations = stations.nearby(option_0_lat, option_0_lon)
 station = stations.fetch(3)
 
-option = st.sidebar.selectbox( 'Select the weather station',
+option_station = st.sidebar.selectbox( 'Select the weather station',
      station.name)
 
-st.write('You selected:', option)
+st.write('You selected:', option_station)
 
 
 # Gets raw data
@@ -52,7 +52,7 @@ csv_cdd = convert_df(df_raw)
 st.download_button('Download ' + str(year) + " weather data - " + str(name_station), csv_cdd, str(year) + " weather data - " + str(name_station), 'text/csv', key = "download-csv")
 
 #Plots map
-df_map = pd.DataFrame({"lat":[stat_lat, option_0_lat], "lon":[stat_lon, option_0_lon]})
+df_map = pd.DataFrame({"lat":[option_0_lat].extend(list(station.latitude)), "lon":[option_0_lon].extend(list(station.latitude))})
 st.map(df_map)
 
 
