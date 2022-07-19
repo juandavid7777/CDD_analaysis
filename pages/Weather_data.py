@@ -1,5 +1,6 @@
 import streamlit as st
 from datetime import datetime
+import pandas as pd
 
 #0. Functions
 from function import weather_data_fetch
