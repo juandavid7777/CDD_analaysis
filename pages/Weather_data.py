@@ -33,18 +33,17 @@ stations = Stations()
 stations = stations.nearby(option_0_lat, option_0_lon)
 station = stations.fetch(3)
 
-option_station = st.sidebar.selectbox( 'Select the weather station',
-     station.name)
+selected_station = st.sidebar.selectbox( 'Select the weather station', station.name)
 
-st.write('You selected:', option_station)
-
+selected_lat = station[station.name == selected_station]["latitude"]
+selected_lon = station[station.name == selected_station]["longitude"]
 
 # Gets raw data
-df_raw = weather_data_fetch(start, end, option_0_lat, option_0_lon)[0]
-name_station = weather_data_fetch(start, end, option_0_lat, option_0_lon)[1]
+df_raw = weather_data_fetch(start, end, selected_lat, selected_lon)[0]
+name_station = weather_data_fetch(start, end, selected_lat, selected_lon)[1]
 
-stat_lat = weather_data_fetch(start, end, option_0_lat, option_0_lon)[2]
-stat_lon = weather_data_fetch(start, end, option_0_lat, option_0_lon)[3]
+stat_lat = weather_data_fetch(start, end, selected_lat, selected_lon)[2]
+stat_lon = weather_data_fetch(start, end, selected_lat, selected_lon)[3]
 
 
 #Converts and uploads files
@@ -60,37 +59,3 @@ list_lon.extend(list(station.longitude))
 
 df_map = pd.DataFrame({"lat": list_lat, "lon": list_lon})
 st.map(df_map)
-
-
-# df = pd.DataFrame(
-#     np.random.randn(1000, 2) / [50, 50] + [37.76, -122.4],
-#     columns=['lat', 'lon'])
-
-# st.pydeck_chart(pdk.Deck(
-#      map_style='mapbox://styles/mapbox/light-v9',
-#      initial_view_state=pdk.ViewState(
-#          latitude=37.76,
-#          longitude=-122.4,
-#          zoom=11,
-#          pitch=50,
-#      ),
-#      layers=[
-#          pdk.Layer(
-#             'HexagonLayer',
-#             data=df,
-#             get_position='[lon, lat]',
-#             radius=200,
-#             elevation_scale=4,
-#             elevation_range=[0, 1000],
-#             pickable=True,
-#             extruded=True,
-#          ),
-#          pdk.Layer(
-#              'ScatterplotLayer',
-#              data=df,
-#              get_position='[lon, lat]',
-#              get_color='[200, 30, 0, 160]',
-#              get_radius=200,
-#          ),
-#      ],
-#  ))
