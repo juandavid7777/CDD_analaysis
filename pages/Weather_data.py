@@ -1,13 +1,7 @@
 import streamlit as st
-
-from meteostat import Hourly
-from meteostat import Stations
-
 from datetime import datetime
 
-
 #0. Functions
-from function import degree_analysis
 from function import weather_data_fetch
 
 def convert_df(df):
@@ -38,6 +32,6 @@ stat_lon = weather_data_fetch(start, end, option_0_lat, option_0_lon)[3]
 
 #Converts and uploads files
 csv_cdd = convert_df(df_raw)
-st.download_button('Download ' + str(year) + " weather date - " + str(name_station), csv_cdd, str(year) + " weather date - " + str(name_station), 'text/csv', key = "download-csv")
+st.download_button('Download ' + str(year) + " weather data - " + str(name_station), csv_cdd, str(year) + " weather data - " + str(name_station), 'text/csv', key = "download-csv")
 
 
