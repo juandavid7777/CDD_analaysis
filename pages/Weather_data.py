@@ -75,4 +75,14 @@ fig.add_trace(go.Scatter(
     # line = dict(width = 1.5, dash = 'solid', color = "cyan"),
     ))
 
+    #Defines figure properties
+fig.update_layout(
+    title = "Weather data",
+    xaxis_title= "Date",
+    yaxis_title= "Temperature (C)",
+    legend_title="Weather",
+    xaxis_rangeslider_visible=False)
+
+fig.update_layout(hovermode="x unified")
+
 st.plotly_chart(fig)
