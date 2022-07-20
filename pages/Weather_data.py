@@ -75,6 +75,14 @@ fig.add_trace(go.Scatter(
     # line = dict(width = 1.5, dash = 'solid', color = "cyan"),
     ))
 
+fig.add_trace(go.Scatter(
+    x=df_raw.index,
+    y=df_raw["rhum"],
+    mode = 'lines',
+    name = "Relative humidity (%)",
+    # line = dict(width = 1.0, color = "cyan")
+    ),secondary_y=True)
+
     #Defines figure properties
 fig.update_layout(
     title = "Sample weather data for " + str(name_station) + " - " + str(year),
