@@ -65,7 +65,7 @@ st.map(df_map)
 
 #Plots
 
-fig = go.Figure()
+fig = make_subplots(specs=[[{"secondary_y": True}]])
 
 fig.add_trace(go.Scatter(
     x=df_raw.index,
