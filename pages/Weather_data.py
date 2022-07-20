@@ -75,4 +75,4 @@ fig.add_trace(go.Scatter(
     # line = dict(width = 1.5, dash = 'solid', color = "cyan"),
     ))
 
-str.plotly_chart(fig)
+st.plotly_chart(fig)
