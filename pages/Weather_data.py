@@ -34,7 +34,7 @@ end = datetime(year, 12, 31, 23, 59)
 # Gets closest station ID
 stations = Stations()
 stations = stations.nearby(option_0_lat, option_0_lon)
-station = stations.fetch(4)
+station = stations.fetch(3)
 
 selected_station = st.sidebar.selectbox( 'Select the weather station', station.name)
 
