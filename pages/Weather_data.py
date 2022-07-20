@@ -91,7 +91,7 @@ fig.update_layout(
     legend_title="Weather",
     xaxis_rangeslider_visible=False)
 
-fig.update_yaxes(title = "Relative Humidity (%)", secondary_y = True, showgrid=True, gridwidth=0.5, gridcolor='yellow')
+fig.update_yaxes(title = "Relative Humidity (%)", secondary_y = True, showgrid=True, gridwidth=0.5, gridcolor='tomatoe')
 
 fig.update_layout(hovermode="x unified")
 
