@@ -71,8 +71,8 @@ fig.add_trace(go.Scatter(
     x=df_raw.index,
     y=df_raw["temp"],
     mode = 'lines',
-    name = "Selected risk: " + str(risk_select*100) + "%",
-    line = dict(width = 1.5, dash = 'solid', color = "cyan"),
+    name = "Temperature (C)",
+    # line = dict(width = 1.5, dash = 'solid', color = "cyan"),
     ))
 
 str.plotly_chart(fig)
