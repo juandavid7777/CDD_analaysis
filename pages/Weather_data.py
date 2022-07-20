@@ -77,7 +77,7 @@ fig.add_trace(go.Scatter(
 
     #Defines figure properties
 fig.update_layout(
-    title = "Sample weather data for " + str(name_station) + " - " str(year),
+    title = "Sample weather data for " + str(name_station) + " - " + str(year),
     xaxis_title= "Date",
     yaxis_title= "Temperature (C)",
     legend_title="Weather",
