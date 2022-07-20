@@ -5,6 +5,9 @@ import numpy as np
 
 from meteostat import Stations
 
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
 
 #0. Functions
 from function import weather_data_fetch
@@ -59,3 +62,17 @@ list_lon.extend(list(station.longitude))
 
 df_map = pd.DataFrame({"lat": list_lat, "lon": list_lon})
 st.map(df_map)
+
+#Plots
+
+fig = go.Figure()
+
+fig.add_trace(go.Scatter(
+    x=df_raw.index,
+    y=df_raw["temp"],
+    mode = 'lines',
+    name = "Selected risk: " + str(risk_select*100) + "%",
+    line = dict(width = 1.5, dash = 'solid', color = "cyan"),
+    ))
+
+str.plotly_chart(fig)
