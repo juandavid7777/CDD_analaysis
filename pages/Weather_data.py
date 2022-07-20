@@ -21,8 +21,8 @@ st.markdown('<b style="color:darkgoldenrod ; font-size: 44px">Weather data acces
 
 st.sidebar.title("Location information")
 
-option_0_lat = number = st.sidebar.number_input('Latitude', value = 25.2048 , step = 0.0001)
-option_0_lon = number = st.sidebar.number_input('Longitude', value = 55.2708, step = 0.0001)
+option_0_lat = number = st.sidebar.number_input('Latitude', value = 25.25 , step = 0.0001)
+option_0_lon = number = st.sidebar.number_input('Longitude', value = 55.333, step = 0.0001)
 option_0_year = number = st.sidebar.number_input('Year', min_value = 2018, max_value=2022, value = 2021)
 
 #3. Creates a date time column to be indexed
