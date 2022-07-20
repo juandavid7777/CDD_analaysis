@@ -71,7 +71,7 @@ fig.add_trace(go.Scatter(
     x=df_raw.index,
     y=df_raw["temp"],
     mode = 'lines',
-    name = "Temperature (C)",
+    name = "Temp (C)",
     # line = dict(width = 1.5, dash = 'solid', color = "cyan"),
     ))
 
@@ -79,7 +79,7 @@ fig.add_trace(go.Scatter(
     x=df_raw.index,
     y=df_raw["rhum"],
     mode = 'lines',
-    name = "Relative humidity (%)",
+    name = "RH (%)",
     line = dict(width = 0.5)
     ),secondary_y=True)
 
@@ -90,6 +90,8 @@ fig.update_layout(
     yaxis_title= "Temperature (C)",
     legend_title="Weather",
     xaxis_rangeslider_visible=False)
+
+fig.update_yaxes(title = "Relative Humidity (%)", secondary_y = True)
 
 fig.update_layout(hovermode="x unified")
 
