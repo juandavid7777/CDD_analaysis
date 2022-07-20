@@ -67,6 +67,13 @@ st.map(df_map)
 
 fig = make_subplots(specs=[[{"secondary_y": True}]])
 
+fig.add_trace(go.Scatter(
+    x=df_raw.index,
+    y=df_raw["temp"],
+    mode = 'lines',
+    name = "Temperature (C)",
+    # line = dict(width = 1.5, dash = 'solid', color = "cyan"),
+    ))
 
 fig.add_trace(go.Scatter(
     x=df_raw.index,
@@ -75,14 +82,6 @@ fig.add_trace(go.Scatter(
     name = "Relative humidity (%)",
     line = dict(width = 0.5)
     ),secondary_y=True)
-
-fig.add_trace(go.Scatter(
-    x=df_raw.index,
-    y=df_raw["temp"],
-    mode = 'lines',
-    name = "Temperature (C)",
-    # line = dict(width = 1.5, dash = 'solid', color = "cyan"),
-    ))
 
     #Defines figure properties
 fig.update_layout(
